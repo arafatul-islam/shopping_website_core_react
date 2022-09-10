@@ -23,6 +23,7 @@ class App extends React.Component {
   componentDidMount() {
     this.setState({
       products: PRODUCTS,
+      showProducts: PRODUCTS
     });
   }
 
@@ -93,9 +94,14 @@ class App extends React.Component {
   };
 
   performSearch = (searchTerm) => {
-    return this.state.products.filter((product) =>
+    const products = [...this.state.products];
+    const showProducts = products.filter((product) =>
       product.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
+    console.log(this.state.showProducts);
+    this.setState({showProducts});
+    console.log(this.state.showProducts);
+
   };
 
   toggleModal = () => {
@@ -105,8 +111,7 @@ class App extends React.Component {
   };
 
   render() {
-    // const showProducts = this.performSearch();
-    // console.log(showProducts);
+    //
     return (
       <Container className="border border-1">
         <h1 className="text-center text-uppercase">counfused customer</h1>
@@ -118,7 +123,7 @@ class App extends React.Component {
         <Row className="display-content my-3">
           <Col md={8}>
             <ProductSidebar
-              showProducts={this.state.products}
+              showProducts={this.state.showProducts}
               addProduct={this.addProduct}
             />
           </Col>
