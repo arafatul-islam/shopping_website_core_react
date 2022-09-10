@@ -8,6 +8,7 @@ import Searchbar from "./components/searchbar";
 
 // fake data
 import PRODUCTS from "./data/fatke-data";
+import ANSWERS from './data/ques-ans';
 
 class App extends React.Component {
   state = {
@@ -136,10 +137,12 @@ class App extends React.Component {
             />
           </Col>
         </Row>
-        <Row className="ques-ans">
-          <Col></Col>
-          <Col></Col>
-          <Col></Col>
+        <hr />
+        <Row className="ques-ans  my-5 py-3 px-4">
+          {ANSWERS.map(ans => <Col key={ans.id}>
+            <h4>{ans.ques}</h4>
+            <p>{ans.ans}</p>
+          </Col>)}
         </Row>
       </Container>
     );
