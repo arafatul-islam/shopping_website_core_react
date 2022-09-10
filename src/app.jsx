@@ -5,10 +5,11 @@ import { Container, Row, Col, Modal, ModalHeader } from "react-bootstrap";
 import CartSidebar from "./components/cart-sidebar";
 import ProductSidebar from "./components/product-sidebar";
 import Searchbar from "./components/searchbar";
+import Footer from './components/footer'
 
 // fake data
 import PRODUCTS from "./data/fatke-data";
-import ANSWERS from './data/ques-ans';
+import ANSWERS from "./data/ques-ans";
 
 class App extends React.Component {
   state = {
@@ -24,7 +25,7 @@ class App extends React.Component {
   componentDidMount() {
     this.setState({
       products: PRODUCTS,
-      showProducts: PRODUCTS
+      showProducts: PRODUCTS,
     });
   }
 
@@ -100,9 +101,8 @@ class App extends React.Component {
       product.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
     console.log(this.state.showProducts);
-    this.setState({showProducts});
+    this.setState({ showProducts });
     console.log(this.state.showProducts);
-
   };
 
   toggleModal = () => {
@@ -114,6 +114,7 @@ class App extends React.Component {
   render() {
     //
     return (
+        <>
       <Container className="border border-1">
         <h1 className="text-center text-uppercase">counfused customer</h1>
         <Row>
@@ -139,12 +140,17 @@ class App extends React.Component {
         </Row>
         <hr />
         <Row className="ques-ans  my-5 py-3 px-4">
-          {ANSWERS.map(ans => <Col key={ans.id}>
-            <h4>{ans.ques}</h4>
-            <p>{ans.ans}</p>
-          </Col>)}
+          {ANSWERS.map((ans) => (
+            <Col key={ans.id}>
+              <h4>{ans.ques}</h4>
+              <p>{ans.ans}</p>
+            </Col>
+          ))}
         </Row>
       </Container>
+      <Footer />
+
+      </>
     );
   }
 }
